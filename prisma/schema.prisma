@@ -42,7 +42,6 @@ model User {
   emailUser    String     @unique
   namaUser     String
   password     String
-  gambarProfil String?
   id           Int        @id @unique @default(autoincrement())
   Order        Order[]
 }

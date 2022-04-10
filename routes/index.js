@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const auth = require('./auth');
+const resto = require('./restaurant')
 const createError = require('http-errors')
 
 
@@ -8,8 +9,9 @@ router.get('/', (req, res) => {
     res.send('Monki flip');
 });
 
-
 router.use('/auth', auth);
+
+router.use('/restaurant', resto);
 
 
 router.use( async (req, res, next) => {

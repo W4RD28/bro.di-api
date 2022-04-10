@@ -1,15 +1,14 @@
-const auth = require('../services/auth.service');
+const resto = require('../models/restaurant.model');
 const createError = require('http-errors');
 
-
-class authController {
-    static register = async (req, res, next) => {
+class restaurantController {
+    static createRestaurant = async (req, res, next) => {
         try {
-            const user = await auth.register(req.body);
+            const restaurant = await resto.createRestaurant(req.body);
             res.status(200).json({
                 status: true,
-                message: 'User created successfully',
-                data: user
+                message: 'Restaurant created successfully',
+                data: restaurant
             })
         }
         catch (e) {
@@ -17,13 +16,12 @@ class authController {
         }
     }
 
-
-    static login = async (req, res) => {
+    static findRestaurant = async (req, res) => {
         try {
-            const data = await auth.login(req.body)
+            const data = await resto.getRestaurant(req.body)
             res.status(200).json({
                 status: true,
-                message: "Account login successful",
+                message: "Getting restaurant successful",
                 data
             })
         } catch (e) {
@@ -31,14 +29,13 @@ class authController {
         }
     }
 
-    
     static all = async (req, res, next) => {
         try {
-            const users = await auth.all();
+            const restaurants = await resto.all();
             res.status(200).json({
                 status: true,
-                message: 'All users',
-                data: users
+                message: 'All restaurants',
+                data: restaurants
             })
         }
         catch (e) {
@@ -46,4 +43,5 @@ class authController {
         }
     }
 }
-module.exports = authController;
+
+module.exports = restaurantController;

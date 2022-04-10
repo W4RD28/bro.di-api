@@ -7,10 +7,12 @@ const jwt = require('../utils/jwt');
 
 class authService {
     static async register(data) {
-        const { email } = data;
+        const { email, password, namaUser } = data;
         data.password = bcrypt.hashSync(data.password, 8);
         let user = prisma.user.create({
-            data
+            email,
+            password, 
+            namaUser
         })
         data.accessToken = await jwt.signAccessToken(user);
 
