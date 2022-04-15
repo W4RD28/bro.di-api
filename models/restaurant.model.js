@@ -7,7 +7,7 @@ class restaurantModel {
     static async createRestaurant(data) {
         const { namaRestoran, lokasiRestoran, gambarRestoran, gambarMenu,
         slotMeja } = data;
-        let user = prisma.restoran.create({
+        let resto = await prisma.restoran.create({
             data
         })
 
@@ -16,7 +16,7 @@ class restaurantModel {
 
     static async findRestaurant(data) {
         const { id } = data;
-        const user = await prisma.user.findUnique({
+        const resto = await prisma.restoran.findUnique({
             where: {
                 id
             }

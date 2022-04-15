@@ -9,7 +9,7 @@ app.use(bodyParser.json())
 
 // redirect to routes/index.js
 const route = require('./routes');
-app.use('/', route);
+app.use('/api/v1/', route);
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {

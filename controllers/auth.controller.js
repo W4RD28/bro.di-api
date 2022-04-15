@@ -27,11 +27,76 @@ class authController {
                 data
             })
         } catch (e) {
-            res.status(500).send('Something went wrong');
+            next(createError(e.statusCode, e.message))
         }
     }
 
-    
+    static profile = async (req, res) => {
+        try {
+            const data = await auth.profile(req.params);
+            res.status(200).json({
+                status: true,
+                message: "Retrieving profile successful",
+                data
+            })
+        } catch (e) {
+            next(createError(e.statusCode, e.message))
+        }
+    }
+
+    static delete = async (req, res) => {
+        try {
+            const data = await auth.delete(req.params);
+            res.status(200).json({
+                status: true,
+                message: "Retrieving profile successful",
+                data
+            })
+        } catch (e) {
+            next(createError(e.statusCode, e.message))
+        }
+    }
+
+    static update = async (req, res) => {
+        try {
+            const data = await auth.update(req.body, req.params);
+            res.status(200).json({
+                status: true,
+                message: "Updating user successful",
+                data
+            })
+        } catch (e) {
+            next(createError(e.statusCode, e.message))
+        }
+    }
+
+    static updateProfile = async (req, res) => {
+        try {
+            const data = await auth.updateProfile(req.body, req.params);
+            res.status(200).json({
+                status: true,
+                message: "Updating user profile successful",
+                data
+            })
+        } catch (e) {
+            next(createError(e.statusCode, e.message))
+        }
+    }
+
+    static updatePassword = async (req, res) => {
+        try {
+            const data = await auth.updatePassword(req.body, req.params);
+            res.status(200).json({
+                status: true,
+                message: "Updating user password successful",
+                data
+            })
+        } catch (e) {
+            next(createError(e.statusCode, e.message))
+        }
+    }
+
+
     static all = async (req, res, next) => {
         try {
             const users = await auth.all();
