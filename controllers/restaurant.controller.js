@@ -18,7 +18,7 @@ class restaurantController {
 
     static findRestaurant = async (req, res) => {
         try {
-            const data = await resto.getRestaurant(req.body)
+            const data = await resto.findRestaurant(req.params)
             res.status(200).json({
                 status: true,
                 message: "Getting restaurant successful",

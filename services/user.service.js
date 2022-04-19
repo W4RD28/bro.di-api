@@ -5,7 +5,7 @@ require('dotenv').config();
 const bcrypt = require('bcryptjs');
 const jwt = require('../utils/jwt');
 
-class authService {
+class userService {
     static async register(data) {
         const { email, password, namaUser } = data;
         data.password = bcrypt.hashSync(data.password, 8);
@@ -122,4 +122,4 @@ class authService {
     }
   }
   
-  module.exports = authService;
+  module.exports = userService;

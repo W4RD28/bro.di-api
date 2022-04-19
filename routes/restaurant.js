@@ -8,7 +8,7 @@ router.post('/create', resto.createRestaurant);
 // get all restaurants
 router.get('/all', resto.all);
 
-// all users
-router.get(`/:id`, resto.findRestaurant);
+// get a restaurant
+router.get('/:id', resto.findRestaurant);
 
 module.exports = router;

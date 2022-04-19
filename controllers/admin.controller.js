@@ -1,114 +1,114 @@
-const auth = require('../services/auth.service');
+const admin = require('../services/admin.service');
 const createError = require('http-errors');
 
 
-class authController {
+class adminController {
     static register = async (req, res, next) => {
         try {
-            const user = await auth.register(req.body);
+            const data = await admin.register(req.body);
             res.status(200).json({
                 status: true,
-                message: 'User created successfully',
-                data: user
+                message: 'Admin created successfully',
+                data: data
             })
         }
         catch (e) {
-            next(createError(e.statusCode, e.message))
+            next(e)
         }
     }
 
 
     static login = async (req, res) => {
         try {
-            const data = await auth.login(req.body)
+            const data = await admin.login(req.body)
             res.status(200).json({
                 status: true,
                 message: "Account login successful",
                 data
             })
         } catch (e) {
-            next(createError(e.statusCode, e.message))
+            next(e)
         }
     }
 
     static profile = async (req, res) => {
         try {
-            const data = await auth.profile(req.params);
+            const data = await admin.profile(req.params);
             res.status(200).json({
                 status: true,
                 message: "Retrieving profile successful",
                 data
             })
         } catch (e) {
-            next(createError(e.statusCode, e.message))
+            next(e)
         }
     }
 
     static delete = async (req, res) => {
         try {
-            const data = await auth.delete(req.params);
+            const data = await admin.delete(req.params);
             res.status(200).json({
                 status: true,
                 message: "Retrieving profile successful",
                 data
             })
         } catch (e) {
-            next(createError(e.statusCode, e.message))
+            next(e)
         }
     }
 
     static update = async (req, res) => {
         try {
-            const data = await auth.update(req.body, req.params);
+            const data = await admin.update(req.body, req.params);
             res.status(200).json({
                 status: true,
-                message: "Updating user successful",
+                message: "Updating admin successful",
                 data
             })
         } catch (e) {
-            next(createError(e.statusCode, e.message))
+            next(e)
         }
     }
 
     static updateProfile = async (req, res) => {
         try {
-            const data = await auth.updateProfile(req.body, req.params);
+            const data = await admin.updateProfile(req.body, req.params);
             res.status(200).json({
                 status: true,
-                message: "Updating user profile successful",
+                message: "Updating admin profile successful",
                 data
             })
         } catch (e) {
-            next(createError(e.statusCode, e.message))
+            next(e)
         }
     }
 
     static updatePassword = async (req, res) => {
         try {
-            const data = await auth.updatePassword(req.body, req.params);
+            const data = await admin.updatePassword(req.body, req.params);
             res.status(200).json({
                 status: true,
-                message: "Updating user password successful",
+                message: "Updating admin password successful",
                 data
             })
         } catch (e) {
-            next(createError(e.statusCode, e.message))
+            next(e)
         }
     }
 
 
     static all = async (req, res, next) => {
         try {
-            const users = await auth.all();
+            const admins = await admin.all();
             res.status(200).json({
                 status: true,
-                message: 'All users',
-                data: users
+                message: 'All admins',
+                data: admins
             })
         }
         catch (e) {
-            next(createError(e.statusCode, e.message))
+            next(e)
         }
     }
 }
-module.exports = authController;
+module.exports = adminController;

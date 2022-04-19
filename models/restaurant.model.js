@@ -14,16 +14,18 @@ class restaurantModel {
         return data;
     }
 
-    static async findRestaurant(data) {
-        const { id } = data;
-        const resto = await prisma.restoran.findUnique({
+    static async findRestaurant(params) {
+        const { id } = params;
+        const resto = await prisma.restoran.findFirst({
             where: {
                 id
             }
         });
-        if (!user) {
+        if (!resto) {
             throw createError.NotFound('Restaurant not found')
         }
+
+        return { ...resto }
     }
     
     static async all() {
