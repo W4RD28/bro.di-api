@@ -5,8 +5,8 @@ require('dotenv').config();
 
 class orderModel {
     static async create(data) {
-        const { namaorder, lokasiorder, gambarorder, gambarMenu,
-        slotMeja } = data;
+        const { idUser, idMeja, bookDate,
+        bookHourStart, bookHourEnd, bookStatus } = data;
         let order = await prisma.order.create({
             data
         })
@@ -57,20 +57,37 @@ class orderModel {
     }
 
     static async update(data, params) {
-        const { namaorder, lokasiorder, gambarorder, gambarMenu,
-            slotMeja } = data;
+        const { idUser, idMeja, bookDate,
+            bookHourStart, bookHourEnd, bookStatus } = data;
         const { id } = params;
         const order = await prisma.order.update({
             where: {
                 id: Number(id)
             },
             data: {
-                namaorder,
-                lokasiorder,
-                gambarorder,
-                gambarMenu,
-                slotMeja
+                idUser, 
+                idMeja, 
+                bookDate,
+                bookHourStart, 
+                bookHourEnd, 
+                bookStatus
+            }
+        });
+        if (!order) {
+            throw createError.NotFound('order not found')
+        }
+        return { ...order }
+    }
 
+    static async updateStatus(data, params) {
+        const { bookStatus } = data;
+        const { id } = params;
+        const order = await prisma.order.update({
+            where: {
+                id: Number(id)
+            },
+            data: {
+                bookStatus
             }
         });
         if (!order) {

@@ -1,5 +1,4 @@
 const restaurant = require('../models/restaurant.model');
-const createError = require('http-errors');
 
 class restaurantController {
     static create = async (req, res, next) => {

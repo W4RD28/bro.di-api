@@ -6,6 +6,7 @@ const user = require('./user');
 const admin = require('./admin')
 const resto = require('./restaurant')
 const table = require('./table')
+const order = require('./order')
 
 router.get('/', (req, res) => {
     res.send('Monki flip');
@@ -18,6 +19,8 @@ router.use('/admin', admin)
 router.use('/restaurant', resto);
 
 router.use('/table', table)
+
+router.use('/order', order)
 
 router.use( async (req, res, next) => {
     next(createError.NotFound('Route not Found'))
