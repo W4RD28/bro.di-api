@@ -1,37 +1,76 @@
-const resto = require('../models/restaurant.model');
+const restaurant = require('../models/restaurant.model');
 const createError = require('http-errors');
 
 class restaurantController {
-    static createRestaurant = async (req, res, next) => {
+    static create = async (req, res, next) => {
         try {
-            const restaurant = await resto.createRestaurant(req.body);
+            const data = await restaurant.create(req.body);
             res.status(200).json({
                 status: true,
                 message: 'Restaurant created successfully',
-                data: restaurant
+                data
             })
         }
         catch (e) {
-            next(createError(e.statusCode, e.message))
+            next(e)
         }
     }
 
-    static findRestaurant = async (req, res) => {
+    static find = async (req, res) => {
         try {
-            const data = await resto.findRestaurant(req.params)
+            const data = await restaurant.find(req.params)
             res.status(200).json({
                 status: true,
                 message: "Getting restaurant successful",
                 data
             })
         } catch (e) {
-            res.status(500).send('Something went wrong');
+            next(e)
+        }
+    }
+
+    static search = async (req, res) => {
+        try {
+            const data = await restaurant.search(req.params)
+            res.status(200).json({
+                status: true,
+                message: "Getting restaurant successful",
+                data
+            })
+        } catch (e) {
+            next(e)
+        }
+    }
+
+    static delete = async (req, res) => {
+        try {
+            const data = await restaurant.delete(req.params)
+            res.status(200).json({
+                status: true,
+                message: "Getting restaurant successful",
+                data
+            })
+        } catch (e) {
+            next(e)
+        }
+    }
+
+    static update = async (req, res) => {
+        try {
+            const data = await restaurant.update(req.body, req.params)
+            res.status(200).json({
+                status: true,
+                message: "Getting restaurant successful",
+                data
+            })
+        } catch (e) {
+            next(e)
         }
     }
 
     static all = async (req, res, next) => {
         try {
-            const restaurants = await resto.all();
+            const restaurants = await restaurant.all();
             res.status(200).json({
                 status: true,
                 message: 'All restaurants',
@@ -39,7 +78,7 @@ class restaurantController {
             })
         }
         catch (e) {
-            next(createError(e.statusCode, e.message))
+            next(e)
         }
     }
 }

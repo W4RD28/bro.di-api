@@ -1,6 +1,4 @@
 const admin = require('../services/admin.service');
-const createError = require('http-errors');
-
 
 class adminController {
     static register = async (req, res, next) => {

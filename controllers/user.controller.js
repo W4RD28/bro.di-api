@@ -13,7 +13,7 @@ class userController {
             })
         }
         catch (e) {
-            next(createError(e.statusCode, e.message))
+            next(e)
         }
     }
 
@@ -27,7 +27,7 @@ class userController {
                 data
             })
         } catch (e) {
-            next(createError(e.statusCode, e.message))
+            next(e)
         }
     }
 
@@ -40,7 +40,7 @@ class userController {
                 data
             })
         } catch (e) {
-            next(createError(e.statusCode, e.message))
+            next(e)
         }
     }
 
@@ -53,7 +53,7 @@ class userController {
                 data
             })
         } catch (e) {
-            next(createError(e.statusCode, e.message))
+            next(e)
         }
     }
 
@@ -66,7 +66,7 @@ class userController {
                 data
             })
         } catch (e) {
-            next(createError(e.statusCode, e.message))
+            next(e)
         }
     }
 
@@ -79,7 +79,7 @@ class userController {
                 data
             })
         } catch (e) {
-            next(createError(e.statusCode, e.message))
+            next(e)
         }
     }
 
@@ -92,7 +92,7 @@ class userController {
                 data
             })
         } catch (e) {
-            next(createError(e.statusCode, e.message))
+            next(e)
         }
     }
 
@@ -107,7 +107,7 @@ class userController {
             })
         }
         catch (e) {
-            next(createError(e.statusCode, e.message))
+            next(e)
         }
     }
 }
