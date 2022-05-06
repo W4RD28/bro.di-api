@@ -15,7 +15,7 @@ router.get('/all', auth, user.all);
 router.get('/:id', auth, user.profile);
 
 // delete a user
-router.delete('/:id', auth, user.delete);
+router.delete('/:id/delete', auth, user.delete);
 
 // update a user
 router.put('/:id/update', auth, user.update);

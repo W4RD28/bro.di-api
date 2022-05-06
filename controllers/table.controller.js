@@ -46,7 +46,7 @@ class tableController {
             const data = await table.delete(req.params)
             res.status(200).json({
                 status: true,
-                message: "Getting table successful",
+                message: "Deleting table successful",
                 data
             })
         } catch (e) {
@@ -59,7 +59,7 @@ class tableController {
             const data = await table.update(req.body, req.params)
             res.status(200).json({
                 status: true,
-                message: "Getting table successful",
+                message: "Updating table successful",
                 data
             })
         } catch (e) {

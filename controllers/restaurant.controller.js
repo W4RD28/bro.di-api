@@ -46,7 +46,7 @@ class restaurantController {
             const data = await restaurant.delete(req.params)
             res.status(200).json({
                 status: true,
-                message: "Getting restaurant successful",
+                message: "Deleting restaurant successful",
                 data
             })
         } catch (e) {
@@ -59,7 +59,7 @@ class restaurantController {
             const data = await restaurant.update(req.body, req.params)
             res.status(200).json({
                 status: true,
-                message: "Getting restaurant successful",
+                message: "Updating restaurant successful",
                 data
             })
         } catch (e) {

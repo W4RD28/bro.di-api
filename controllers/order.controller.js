@@ -46,7 +46,7 @@ class orderController {
             const data = await order.delete(req.params)
             res.status(200).json({
                 status: true,
-                message: "Getting order successful",
+                message: "Deleting order successful",
                 data
             })
         } catch (e) {
@@ -59,7 +59,7 @@ class orderController {
             const data = await order.update(req.body, req.params)
             res.status(200).json({
                 status: true,
-                message: "Getting order successful",
+                message: "Updating order successful",
                 data
             })
         } catch (e) {
@@ -72,7 +72,7 @@ class orderController {
             const data = await order.updateStatus(req.body, req.params)
             res.status(200).json({
                 status: true,
-                message: "Getting order successful",
+                message: "Updating order status successful",
                 data
             })
         } catch (e) {

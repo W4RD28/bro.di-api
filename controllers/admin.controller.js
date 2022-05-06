@@ -47,7 +47,7 @@ class adminController {
             const data = await admin.delete(req.params);
             res.status(200).json({
                 status: true,
-                message: "Retrieving profile successful",
+                message: "Deleting admin successful",
                 data
             })
         } catch (e) {

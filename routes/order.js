@@ -18,6 +18,6 @@ router.delete('/:id/delete', order.delete);
 router.put('/:id/update', order.update);
 
 // update an order status
-router.put('/:id/update-status', order.updateStatus);
+router.put('/:id/updatestatus', order.updateStatus);
 
 module.exports = router;

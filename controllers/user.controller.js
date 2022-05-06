@@ -49,7 +49,7 @@ class userController {
             const data = await user.delete(req.params);
             res.status(200).json({
                 status: true,
-                message: "Retrieving profile successful",
+                message: "Deleting user successful",
                 data
             })
         } catch (e) {
