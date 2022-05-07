@@ -38,6 +38,8 @@ CREATE TABLE "User" (
     "email" TEXT NOT NULL,
     "namaUser" TEXT NOT NULL,
     "password" TEXT NOT NULL,
+    "resetToken" TEXT,
+    "tokenExpire" TIMESTAMP(3),
     "id" SERIAL NOT NULL,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")

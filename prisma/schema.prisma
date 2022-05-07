@@ -3,8 +3,8 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
   shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
@@ -12,8 +12,8 @@ model Meja {
   idRestoran Int
   slotBangku Int
   hargaMeja  Int
-  id         Int          @id @unique @default(autoincrement())
-  Restoran   Restoran     @relation(fields: [idRestoran], references: [id])
+  id         Int      @id @unique @default(autoincrement())
+  Restoran   Restoran @relation(fields: [idRestoran], references: [id])
   Order      Order[]
 }
 
@@ -24,9 +24,9 @@ model Order {
   bookHourStart DateTime
   bookHourEnd   DateTime
   bookStatus    String?
-  id            Int       @id @unique @default(autoincrement())
-  Meja          Meja      @relation(fields: [idMeja], references: [id])
-  User          User      @relation(fields: [idUser], references: [id])
+  id            Int      @id @unique @default(autoincrement())
+  Meja          Meja     @relation(fields: [idMeja], references: [id])
+  User          User     @relation(fields: [idUser], references: [id])
 }
 
 model Restoran {
@@ -35,21 +35,23 @@ model Restoran {
   gambarRestoran String?
   gambarMenu     String?
   slotMeja       Int?
-  id             Int      @id @unique @default(autoincrement())
+  id             Int     @id @unique @default(autoincrement())
   Meja           Meja[]
 }
 
 model User {
-  email        String     @unique
-  namaUser     String
-  password     String
-  id           Int        @id @unique @default(autoincrement())
-  Order        Order[]
+  email       String  @unique
+  namaUser    String
+  password    String
+  resetToken  String?
+  tokenExpire DateTime?
+  id          Int     @id @unique @default(autoincrement())
+  Order       Order[]
 }
 
 model Admin {
-  id           Int        @id @unique @default(autoincrement())
-  namaAdmin    String
-  email        String     @unique
-  password     String
+  id        Int    @id @unique @default(autoincrement())
+  namaAdmin String
+  email     String @unique
+  password  String
 }
