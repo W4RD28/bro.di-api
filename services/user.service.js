@@ -6,6 +6,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('../utils/jwt');
 const crypto = require('crypto');
 const sendEmail = require('../utils/sendEmail');
+const url = require('../utils/url');
 
 class userService {
     static async register(data) {
@@ -139,7 +140,7 @@ class userService {
             }
         })
 
-        const link = `${process.env.BASE_URL}/password-reset/${user.id}/${resetToken}`;
+        const link = `${url}/user/password-reset/${user.id}/${resetToken}`;
 
         await sendEmail(user.email, "password reset", `The link to reset your password is ${link}`);
 
