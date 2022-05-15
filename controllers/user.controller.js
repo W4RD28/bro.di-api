@@ -18,7 +18,7 @@ class userController {
     }
 
 
-    static login = async (req, res) => {
+    static login = async (req, res, next) => {
         try {
             const data = await user.login(req.body)
             res.status(200).json({
@@ -31,7 +31,7 @@ class userController {
         }
     }
 
-    static profile = async (req, res) => {
+    static profile = async (req, res, next) => {
         try {
             const data = await user.profile(req.params);
             res.status(200).json({
@@ -44,7 +44,7 @@ class userController {
         }
     }
 
-    static delete = async (req, res) => {
+    static delete = async (req, res, next) => {
         try {
             const data = await user.delete(req.params);
             res.status(200).json({
@@ -57,7 +57,7 @@ class userController {
         }
     }
 
-    static update = async (req, res) => {
+    static update = async (req, res, next) => {
         try {
             const data = await user.update(req.body, req.params);
             res.status(200).json({
@@ -70,7 +70,7 @@ class userController {
         }
     }
 
-    static updateProfile = async (req, res) => {
+    static updateProfile = async (req, res, next) => {
         try {
             const data = await user.updateProfile(req.body, req.params);
             res.status(200).json({
@@ -83,7 +83,7 @@ class userController {
         }
     }
 
-    static updatePassword = async (req, res) => {
+    static updatePassword = async (req, res, next) => {
         try {
             const data = await user.updatePassword(req.body, req.params);
             res.status(200).json({
@@ -110,31 +110,32 @@ class userController {
         }
     }
 
+    // TODO: Create password reset
     
-    static generatePasswordReset = async (req, res) => {
-        try {
-            const data = await user.generatePasswordReset(req.body);
-            res.status(200).json({
-                status: true,
-                message: "succesfully sent email",
-                data
-            })
-        } catch (e) {
-            next(e)
-        }
-    }
+    // static generatePasswordReset = async (req, res) => {
+    //     try {
+    //         const data = await user.generatePasswordReset(req.body);
+    //         res.status(200).json({
+    //             status: true,
+    //             message: "succesfully sent email",
+    //             data
+    //         })
+    //     } catch (e) {
+    //         next(e)
+    //     }
+    // }
 
-    static passwordReset = async (req, res) => {
-        try {
-            const data = await user.passwordReset(req.body, req.params);
-            res.status(200).json({
-                status: true,
-                message: "succesfully reset password",
-                data
-            })
-        } catch (e) {
-            next(e)
-        }
-    }
+    // static passwordReset = async (req, res) => {
+    //     try {
+    //         const data = await user.passwordReset(req.body, req.params);
+    //         res.status(200).json({
+    //             status: true,
+    //             message: "succesfully reset password",
+    //             data
+    //         })
+    //     } catch (e) {
+    //         next(e)
+    //     }
+    // }
 }
 module.exports = userController;

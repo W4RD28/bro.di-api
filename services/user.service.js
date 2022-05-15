@@ -125,72 +125,73 @@ class userService {
     }
 
 
-    
-    static async generatePasswordReset(data) {
-        const { email } = data;
-        const resetToken = crypto.randomBytes(20).toString('hex');
-        const tokenExpire = Date.now() + 3600000; //expires in an hour
-        const user = await prisma.user.update({
-            where: {
-                email: email
-            },
-            data: {
-                resetToken: resetToken,
-                tokenExpire: tokenExpire
-            }
-        })
+    // TODO: Create password reset
 
-        const link = `${url}/user/password-reset/${user.id}/${resetToken}`;
+    // static async generatePasswordReset(data) {
+    //     const { email } = data;
+    //     const resetToken = crypto.randomBytes(20).toString('hex');
+    //     const tokenExpire = Date.now() + 3600000; //expires in an hour
+    //     const user = await prisma.user.update({
+    //         where: {
+    //             email: email
+    //         },
+    //         data: {
+    //             resetToken: resetToken,
+    //             tokenExpire: tokenExpire
+    //         }
+    //     })
 
-        await sendEmail(user.email, "password reset", `The link to reset your password is ${link}`);
+    //     const link = `${url}/user/password-reset/${user.id}/${resetToken}`;
 
-        return { user, link };
-    }
+    //     await sendEmail(user.email, "password reset", `The link to reset your password is ${link}`);
 
-    static async passwordReset(data, params) {
-        var message;
+    //     return { user, link };
+    // }
+
+    // static async passwordReset(data, params) {
+    //     var message;
         
-        const { id, resetToken } = params;
-        const token = await prisma.user.findUnique({
-            where: {
-                id: Number(id)
-            },
-            select: {
-                resetToken,
-                tokenExpire,
-            }
-        })
+    //     const { id, resetToken } = params;
+    //     const token = await prisma.user.findUnique({
+    //         where: {
+    //             id: Number(id)
+    //         },
+    //         select: {
+    //             resetToken,
+    //             tokenExpire,
+    //         }
+    //     })
 
-        if (token.resetToken !== params.resetToken) {
-            return message = "reset token error";
-        }
+    //     if (token.resetToken !== params.resetToken) {
+    //         return message = "reset token error";
+    //     }
 
-        if (token.tokenExpire.getTime() < Date.now() || tokenExpire === null) {
-            return message = "token expiration error";
-        }
+    //     if (token.tokenExpire.getTime() < Date.now() || tokenExpire === null) {
+    //         return message = "token expiration error";
+    //     }
 
-        data.password = bcrypt.hashSync(data.password, 8);
-        const { password } = data;
+    //     data.password = bcrypt.hashSync(data.password, 8);
+    //     const { password } = data;
         
-        const user = await prisma.user.update({
-            where: {
-                id: Number(id)
-            },
-            data: {
-                password: data.password,
-                resetToken: null,
-                tokenExpire: null
-            }
-        });
+    //     const user = await prisma.user.update({
+    //         where: {
+    //             id: Number(id)
+    //         },
+    //         data: {
+    //             password: data.password,
+    //             resetToken: null,
+    //             tokenExpire: null
+    //         }
+    //     });
 
-        if (!user) {
-            throw createError.NotFound('User not registered')
-        }
+    //     if (!user) {
+    //         throw createError.NotFound('User not registered')
+    //     }
 
-        message = "user succesfully reset password"
+    //     message = "user succesfully reset password"
 
-        return { message, user };
-    }
+    //     return { message, user };
+    // }
   }
   
   module.exports = userService;

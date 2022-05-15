@@ -26,10 +26,10 @@ router.put('/:id/profileupdate', auth, user.updateProfile);
 // update a user password
 router.put('/:id/passwordchange', auth, user.updatePassword);
 
-// generate a password reset
-router.post('/password-reset', user.generatePasswordReset);
+// // generate a password reset
+// router.post('/password-reset', user.generatePasswordReset);
 
-// password reset 
-router.post('/password-reset/:id/:resetToken', user.passwordReset)
+// // password reset 
+// router.post('/password-reset/:id/:resetToken', user.passwordReset)
 
 module.exports = router;
