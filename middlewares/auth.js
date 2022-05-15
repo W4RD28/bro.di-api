@@ -1,14 +1,20 @@
 const jwt = require('../utils/jwt')
 const createError = require('http-errors')
 
+var token;
 
 const auth = async (req, res, next) => {
-    if (!req.headers.authorization) {
+    if (!req.headers.authorization || !req.cookies.jwt) {
         return next(createError.Unauthorized('Access token is required'))
     }
 
+    if (req.headers.authorization) {
+        token = req.headers.authorization.split(' ')[1]
+    }
+    if (req.cookies.jwt) {
+        token = req.cookies.jwt;
+    }
 
-    const token = req.headers.authorization.split(' ')[1]
     if (!token) {
         return next(createError.Unauthorized())
     }
