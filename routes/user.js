@@ -26,6 +26,8 @@ router.put('/:id/profileupdate', auth, user.updateProfile);
 // update a user password
 router.put('/:id/passwordchange', auth, user.updatePassword);
 
+// TODO: Create password reset
+
 // // generate a password reset
 // router.post('/password-reset', user.generatePasswordReset);
 
