@@ -15,7 +15,7 @@ class restaurantController {
         }
     }
 
-    static find = async (req, res) => {
+    static find = async (req, res, next) => {
         try {
             const data = await restaurant.find(req.params)
             res.status(200).json({
@@ -28,7 +28,7 @@ class restaurantController {
         }
     }
 
-    static search = async (req, res) => {
+    static search = async (req, res, next) => {
         try {
             const data = await restaurant.search(req.params)
             res.status(200).json({
@@ -41,7 +41,7 @@ class restaurantController {
         }
     }
 
-    static delete = async (req, res) => {
+    static delete = async (req, res, next) => {
         try {
             const data = await restaurant.delete(req.params)
             res.status(200).json({
@@ -54,7 +54,7 @@ class restaurantController {
         }
     }
 
-    static update = async (req, res) => {
+    static update = async (req, res, next) => {
         try {
             const data = await restaurant.update(req.body, req.params)
             res.status(200).json({

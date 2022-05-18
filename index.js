@@ -13,8 +13,15 @@ app.use(bodyParser.json())
 const route = require('./routes');
 app.use(cookieParser());
 app.use(cors());
+const whiteList = ['http://localhost:3000', ,'https://bro-1q1jokw3o-matthewfelixr.vercel.app'];
 const corsOptions ={
-    origin:'http://localhost:3000', 
+    origin: function (origin, callback) {
+        if (whitelist.indexOf(origin) !== -1) {
+            callback(null, true)
+        } else {
+            callback(new Error('Not allowed by CORS'))
+        }
+    }, 
     credentials:true,            //access-control-allow-credentials:true
     optionSuccessStatus:200
 }
