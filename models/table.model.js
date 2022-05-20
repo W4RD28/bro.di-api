@@ -36,6 +36,23 @@ class tableModel {
         return { ...table }
     }
 
+    static async findByAvailable(data, params){
+        const { slotBangku } = data;
+        const { idRestoran } = params;
+        const table = await prisma.meja.findMany({
+            where: {
+                slotBangku: Number(slotBangku),
+                idRestoran: Number(idRestoran)
+            }
+        })
+
+        if (!table) {
+            throw createError.NotFound('table not found')
+        }
+
+        return { ...table }
+    }
+
     static async search(params) {
         const { searchParams } = params;
         const tables = await prisma.meja.findMany({

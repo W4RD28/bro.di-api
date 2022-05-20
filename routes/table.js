@@ -11,6 +11,9 @@ router.get('/all', table.all);
 // get a table
 router.get('/:id', table.find);
 
+// get table from restaurant
+router.get('/restaurant/:id', table.findByAvailable)
+
 // delete a table
 router.delete('/:id/delete', table.delete);
 

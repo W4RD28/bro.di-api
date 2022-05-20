@@ -11,6 +11,9 @@ router.get('/all', order.all);
 // get an order
 router.get('/:id', order.find);
 
+// get orders by userId
+router.get('/getbyuser/:id', order.findByUserId)
+
 // delete an order
 router.delete('/:id/delete', order.delete);
 

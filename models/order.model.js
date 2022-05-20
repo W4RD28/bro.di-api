@@ -27,6 +27,19 @@ class orderModel {
         return { ...order }
     }
 
+    static async findAllByUserId(params) {
+        const { userId } = params;
+        const order = await prisma.order.findMany({
+            where: {
+                userId: Number(userId)
+            }
+        });
+        if (!order) {
+            throw createError.NotFound('order not found')
+        }
+        return { ...order }
+    }
+
     static async findSameHour(params) {
         const { id } = params;
         const order = await prisma.order.findFirst({

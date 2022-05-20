@@ -28,6 +28,19 @@ class orderController {
         }
     }
 
+    static findByUserId = async (req, res) => {
+        try {
+            const data = await order.find(req.params)
+            res.status(200).json({
+                status: true,
+                message: "Getting orders successful",
+                data
+            })
+        } catch (e) {
+            next(e)
+        }
+    }
+
     static search = async (req, res) => {
         try {
             const data = await order.search(req.params)

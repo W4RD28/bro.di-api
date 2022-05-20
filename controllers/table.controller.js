@@ -28,6 +28,19 @@ class tableController {
         }
     }
 
+    static findByAvailable = async (req, res) => {
+        try {
+            const data = await table.findByAvailable(req.body, req.params)
+            res.status(200).json({
+                status: true,
+                message: "Getting table successful",
+                data
+            })
+        } catch (e) {
+            next(e)
+        }
+    }
+
     static search = async (req, res) => {
         try {
             const data = await table.search(req.params)
