@@ -12,6 +12,7 @@ class orderModel {
                 bookDate,
                 bookHourEnd,
                 bookHourStart,
+                bookStatus,
                 idUser: { connect: { id: Number(idUser) } },
                 idMeja: { connect: { id: Number(idMeja) }}
             }
