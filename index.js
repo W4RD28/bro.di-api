@@ -12,11 +12,11 @@ app.use(bodyParser.json())
 // redirect to routes/index.js
 const route = require('./routes');
 app.use(cookieParser());
-app.use(cors());
+// app.use(cors());
 const whiteList = ['http://localhost:3000', ,'https://bro-1q1jokw3o-matthewfelixr.vercel.app'];
 const corsOptions ={
     origin: function (origin, callback) {
-        if (whitelist.indexOf(origin) !== -1) {
+        if (whiteList.indexOf(origin) !== -1) {
             callback(null, true)
         } else {
             callback(new Error('Not allowed by CORS'))
@@ -25,7 +25,7 @@ const corsOptions ={
     credentials:true,            //access-control-allow-credentials:true
     optionSuccessStatus:200
 }
-app.use(cors(corsOptions));
+app.use(cors({origin:true,credentials: true}));
 app.use('/api/v1/', route);
 
 const port = process.env.PORT || 5000;
