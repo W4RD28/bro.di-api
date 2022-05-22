@@ -76,11 +76,15 @@ class orderModel {
     }
 
     static async findAllByUserId(params) {
-        const { userId } = params;
+        const { idUser } = params;
         const order = await prisma.order.findMany({
             where: {
-                userId: Number(userId)
-            }
+                User: {
+                    id: {
+                        equals: Number(idUser)
+                    }
+                }
+            },
         });
         if (!order) {
             throw createError.NotFound('order not found')

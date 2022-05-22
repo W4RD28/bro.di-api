@@ -12,7 +12,7 @@ router.get('/all', order.all);
 router.get('/:id', order.find);
 
 // get orders by userId
-router.get('/getbyuser/:id', order.findByUserId)
+router.get('/getbyuser/:idUser', order.findAllByUserId)
 
 // delete an order
 router.delete('/:id/delete', order.delete);

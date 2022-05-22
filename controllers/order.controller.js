@@ -28,9 +28,9 @@ class orderController {
         }
     }
 
-    static findByUserId = async (req, res) => {
+    static findAllByUserId = async (req, res, next) => {
         try {
-            const data = await order.find(req.params)
+            const data = await order.findAllByUserId(req.params)
             res.status(200).json({
                 status: true,
                 message: "Getting orders successful",
