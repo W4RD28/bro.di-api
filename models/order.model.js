@@ -43,8 +43,10 @@ class orderModel {
 
         let order = await prisma.order.create({
             data:{
-                user: {connect: {id: idUser}},
-                meja: {connect: {id: idMeja}},
+                // idUser,
+                // idMeja,
+                User: {connect: {id: Number(idUser)}},
+                Meja: {connect: {id: Number(idMeja)}},
                 bookDate,
                 bookHourEnd,
                 bookHourStart,
