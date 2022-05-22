@@ -3,22 +3,61 @@ const prisma = new PrismaClient();
 
 require('dotenv').config();
 
+function isDefined(value) {
+  return value !== null && typeof value !== 'undefined';
+}
+
+function connectRelations(data, relations) {
+  const d = { ...data }; // it would be better to deep clone the data
+
+  Object.keys(relations).forEach((key) => {
+    if (Object.values(relations[key]).filter(isDefined).length > 0) {
+      d[key] = { connect: relations[key] };
+    }
+  });
+  return d;
+}
+
+const foreignKeyReplacement = (input) => {	
+    let output = input	
+    const foreignKeys = Object.keys(input).filter((k) => k.match(/$id/))	
+  
+    foreignKeys.forEach((key) => {	
+      const modelName = key.replace(/$id/, '')	
+      const value = input[key]	
+  
+      delete output[key]	
+      output = Object.assign(output, {	
+        [modelName]: { connect: { id: value } },	
+      })	
+    })	
+  
+    return output	
+  }
+
 class orderModel {
     static async create(data) {
         const { idUser, idMeja, bookDate,
         bookHourStart, bookHourEnd, bookStatus } = data;
+        data.bookDate = Date.parse(bookDate);
+
         let order = await prisma.order.create({
             data:{
+                user: {connect: {id: idUser}},
+                meja: {connect: {id: idMeja}},
                 bookDate,
                 bookHourEnd,
                 bookHourStart,
                 bookStatus,
-                idUser: { connect: { id: Number(idUser) } },
-                idMeja: { connect: { id: Number(idMeja) }}
+
             }
         })
 
-        return data;
+        // let order = await prisma.order.create({
+        //     data: foreignKeyReplacement(data)
+        // })
+
+        return order;
     }
 
     static async find(params) {
