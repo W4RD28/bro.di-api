@@ -1,3 +1,9 @@
+## About
+Backend for [bro.di](https://github.com/matthewfelixr/bro.di)
+
+## Endpoints
+Can be found [here](https://docs.google.com/spreadsheets/d/1XnbtR5Tt_KyF1J51Qkw-P7IxMVuL8FLVQcROE0ZaYSw/edit?usp=sharing)
+
 ## Getting Started
  - Clone this Repo
  - Create `.env` file with `DATABASE_URL` and `ACCESS_TOKEN_SECRET` inside it
@@ -5,4 +11,3 @@
  - Run `npm install`
  - Run `nodemon`
 
-### Good hunting!
